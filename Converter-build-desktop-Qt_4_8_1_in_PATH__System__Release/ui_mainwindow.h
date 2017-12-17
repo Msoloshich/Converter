@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sun Dec 17 13:58:03 2017
+** Created: Sun Dec 17 23:33:02 2017
 **      by: Qt User Interface Compiler version 4.8.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -21,7 +21,6 @@
 #include <QtGui/QPushButton>
 #include <QtGui/QStatusBar>
 #include <QtGui/QTableView>
-#include <QtGui/QTextBrowser>
 #include <QtGui/QToolBar>
 #include <QtGui/QWidget>
 
@@ -34,7 +33,6 @@ public:
     QPushButton *OpenButton;
     QPushButton *ConvertButton;
     QLabel *FileWaylabel;
-    QTextBrowser *textBrowser;
     QTableView *tableView;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
@@ -52,16 +50,13 @@ public:
         OpenButton->setGeometry(QRect(20, 10, 98, 27));
         ConvertButton = new QPushButton(centralWidget);
         ConvertButton->setObjectName(QString::fromUtf8("ConvertButton"));
-        ConvertButton->setGeometry(QRect(510, 60, 98, 27));
+        ConvertButton->setGeometry(QRect(510, 50, 98, 27));
         FileWaylabel = new QLabel(centralWidget);
         FileWaylabel->setObjectName(QString::fromUtf8("FileWaylabel"));
-        FileWaylabel->setGeometry(QRect(130, 10, 421, 31));
-        textBrowser = new QTextBrowser(centralWidget);
-        textBrowser->setObjectName(QString::fromUtf8("textBrowser"));
-        textBrowser->setGeometry(QRect(20, 120, 251, 241));
+        FileWaylabel->setGeometry(QRect(130, 10, 471, 31));
         tableView = new QTableView(centralWidget);
         tableView->setObjectName(QString::fromUtf8("tableView"));
-        tableView->setGeometry(QRect(320, 120, 281, 241));
+        tableView->setGeometry(QRect(19, 100, 591, 261));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));

@@ -18,6 +18,8 @@ public:
 private slots:
     void on_OpenButton_clicked();
 
+    void on_ConvertButton_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
