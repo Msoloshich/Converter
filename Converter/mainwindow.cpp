@@ -109,6 +109,18 @@ void MainWindow::on_OpenButton_clicked()
      {
 
             MainDataType="SQLite";
+            db.close();
+            ui->comboBox->clear();
+            db=dbconnect(FileWay);//подлючаемся к бд
+            db.setDatabaseName(FileWay);
+            db.open();
+
+            QStringList TablesNames=db.tables();
+            for(int i=0;i<TablesNames.size(); i++) //записываем имена таблиц в элемент comboBox
+            {
+                ui->comboBox->addItem(TablesNames[i]);
+            }
+            ui->comboBox->show();
 
 
 
@@ -206,6 +218,28 @@ void MainWindow::on_ConvertButton_clicked()
         else// делаем конвертацию в CSV
         {
 
+            QString filename=QFileDialog::getSaveFileName();// диалог сохранения файла
+            QFile f(filename+".csv");
+                if( f.open( QIODevice::WriteOnly ) )//если получилось открыть файл для сохранения
+                {
+                    QTextStream ts( &f );// поток записи в файл
+                    QStringList strList;
+                    //strList << "\" \"";
+                    for( int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c )
+                        strList << "\""+ui->tableView->model()->headerData(c, Qt::Horizontal).toString()+"\"";//пробегаемся по названия столбцов
+                    ts << strList.join( ";" )+"\n";
+                    for( int r = 0; r < ui->tableView->verticalHeader()->count(); ++r )
+                    {
+                        strList.clear();
+                        for( int c = 0; c < ui->tableView->horizontalHeader()->count(); ++c )//пробегаемся по данным
+                        {
+                            strList << "\""+ui->tableView->model()->data(ui->tableView->model()->index(r, c), Qt::DisplayRole).toString()+"\"";
+                        }
+                        ts << strList.join( ";" )+"\n";
+                    }
+                    f.close();
+                }
+
 
 
 
@@ -216,5 +250,9 @@ void MainWindow::on_ConvertButton_clicked()
 
 void MainWindow::on_comboBox_currentIndexChanged(const QString &arg1)
 {
+    model = new QSqlTableModel(this,db);//создаем модель зависищую от бд
+    model->setTable(TableName);//заносим модель
+    model->select();
+    ui->tableView->setModel(model);
 
 }
