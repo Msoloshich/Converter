@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QSqlTableModel>
 
 namespace Ui {
 class MainWindow;
@@ -20,8 +21,11 @@ private slots:
 
     void on_ConvertButton_clicked();
 
+    void on_comboBox_currentIndexChanged(const QString &arg1);
+
 private:
     Ui::MainWindow *ui;
+    QSqlTableModel *model;
 };
 
 #endif // MAINWINDOW_H
